@@ -192,7 +192,7 @@ console.log(getNumbers(1, 10));
 // Потрібно додати перевірку, що функція отримує саме числа, в іншому випадку
 // повертати з функції рядок - 'Not a number!'.
 
-function min(a, b) {
+function getMin(a, b) {
   if (typeof a !== "number" || typeof b !== "number") {
     return "Not a number!";
   }
@@ -200,7 +200,7 @@ function min(a, b) {
   return a < b ? a : b;
 }
 
-console.log(min(5, 10));
+console.log(getMin(5, 10));
 
 
 // Завдання 9:
