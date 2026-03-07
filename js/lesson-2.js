@@ -10,6 +10,25 @@
 // Використайте цикл for для перебору елементів масиву.
 // Нумерація елементів повинна починатися з 1 (а не з 0).
 
+const styles = ["jazz", "blues"];
+
+styles.push("rock-n-roll");
+
+const index = styles.indexOf("blues");
+if (index !== -1) {
+  styles[index] = "classic";
+}
+
+console.log(styles);
+
+function logItems(array) {
+  for (let i = 0; i < array.length; i++) {
+    console.log(`${i + 1} - ${array[i]}`);
+  }
+}
+
+logItems(styles);
+
 
 // Завдання 2:
 
@@ -22,6 +41,20 @@
 
 // const logins = ["Peter", "John", "Igor", "Sasha"];
 
+const logins = ["Peter", "John", "Igor", "Sasha"];
+
+function checkLogin(array) {
+  const name = prompt("Enter login");
+
+  if (array.includes(name)) {
+    alert(`Welcome, ${name}!`);
+  } else {
+    alert("User not found");
+  }
+}
+
+checkLogin(logins);
+
 
 // Завдання 3:
 
@@ -29,6 +62,22 @@
 // яка приймає довільну кількість
 // аргументів і повертає їхнє середнє значення.
 // Додайте перевірку, що аргументи - це числа.
+
+function calculateAverage(...args) {
+  let sum = 0;
+  let count = 0;
+
+  for (const arg of args) {
+    if (typeof arg === "number") {
+      sum += arg;
+      count++;
+    }
+  }
+
+  return count ? sum / count : 0;
+}
+
+console.log(calculateAverage(5, 10, 15));
 
 
 // Завдання 4:
@@ -42,6 +91,20 @@
 // третє - з четвертим і так до кінця.
 // В результаті функція має повертати масив [33, 45, 39, 17, 25, 27, 29].
 
+const someArr = [22, 11, 34, 5, 12, 13, 14, 15];
+
+function sumNeighbors(arr) {
+  const result = [];
+
+  for (let i = 0; i < arr.length - 1; i++) {
+    result.push(arr[i] + arr[i + 1]);
+  }
+
+  return result;
+}
+
+console.log(sumNeighbors(someArr));
+
 
 // Завдання 5:
 
@@ -53,6 +116,27 @@
 
 // const numbers = [2, 5, 35, 56, 12, 24, 7, 80, 3];
 
+function findSmallestNumber(numbers) {
+
+  if (!Array.isArray(numbers)) {
+    return "Sory, it is not an array!";
+  }
+
+  let min = numbers[0];
+
+  for (const num of numbers) {
+    if (num < min) {
+      min = num;
+    }
+  }
+
+  return min;
+}
+
+const numbers = [2, 5, 35, 56, 12, 24, 7, 80, 3];
+
+console.log(findSmallestNumber(numbers));
+
 
 // Завдання 6:
 
@@ -62,6 +146,22 @@
 
 // Скористайтесь цим прикладом виклику функції для перевірки її роботи:
 // console.log(findLongestWord("London is the capital of Great Britain")); // 'capital'
+
+function findLongestWord(string) {
+
+  const words = string.split(" ");
+  let longest = "";
+
+  for (const word of words) {
+    if (word.length > longest.length) {
+      longest = word;
+    }
+  }
+
+  return longest;
+}
+
+console.log(findLongestWord("London is the capital of Great Britain"));
 
 
 // Завдання 7:
@@ -80,6 +180,21 @@
 //     premium: true,
 //   };
 
+const user = {
+  name: "John",
+  age: 20,
+  hobby: "tenis",
+  premium: true,
+};
+
+user.mood = "happy";
+user.hobby = "skydiving";
+user.premium = false;
+
+for (const key of Object.keys(user)) {
+  console.log(`${key}:${user[key]}`);
+}
+
 
 // Завдання 8:
 
@@ -94,6 +209,20 @@
 //     Ajax: 1470,
 //   };
 
+const salaries = {
+  Mango: 100,
+  Poly: 160,
+  Ajax: 1470,
+};
+
+let sum = 0;
+
+for (const salary of Object.values(salaries)) {
+  sum += salary;
+}
+
+console.log(sum);
+
 
 // Завдання 9:
 
@@ -105,6 +234,33 @@
 
 // Якщо вказані властивості в обʼєкті відсутні (тобто метод exist повертає false),
 // методи sum і mult мають повертати рядок 'No such propeties'
+
+const calculator = {
+
+  read(a, b) {
+    this.a = a;
+    this.b = b;
+  },
+
+  exist() {
+    return this.a !== undefined && this.b !== undefined;
+  },
+
+  sum() {
+    if (!this.exist()) return "No such propeties";
+    return this.a + this.b;
+  },
+
+  mult() {
+    if (!this.exist()) return "No such propeties";
+    return this.a * this.b;
+  }
+};
+
+calculator.read(5, 10);
+
+console.log(calculator.sum());
+console.log(calculator.mult());
 
 
 // Завдання 10:
@@ -125,3 +281,27 @@
 //     { name: "Виноград", price: 440, quantity: 3 },
 //     { name: "Банан", price: 125, quantity: 3 },
 //   ];
+
+const fruits = [
+  { name: "Яблуко", price: 45, quantity: 7 },
+  { name: "Апельсин", price: 60, quantity: 4 },
+  { name: "Банан", price: 125, quantity: 8 },
+  { name: "Груша", price: 350, quantity: 2 },
+  { name: "Виноград", price: 440, quantity: 3 },
+  { name: "Банан", price: 125, quantity: 3 },
+];
+
+function calcTotalPrice(fruits, fruitName) {
+
+  let total = 0;
+
+  for (const fruit of fruits) {
+    if (fruit.name === fruitName) {
+      total += fruit.price * fruit.quantity;
+    }
+  }
+
+  return total;
+}
+
+console.log(calcTotalPrice(fruits, "Банан"));
